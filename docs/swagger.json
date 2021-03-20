@@ -1,0 +1,75 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Nome do seu projeto",
+    "description": "Descrição desta API",
+  },
+  
+  "basePath": "/seu/base/path",
+  "host": "localhost:8080",
+  "paths": {
+    "/task":{
+      "get":{
+        "description":"Lista as tarefas",
+        "responses":{
+          "200":{
+            "description":"Retorna a lista de tarefas",
+            "schema":{
+              "type":"array",
+              "items":{"$ref":"#/definitions/task"}
+            }
+          }
+        }
+      },
+      "post":{
+        "description":"Cria uma tarefa",
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "schema":{
+              "$ref":"#/definitions/taskRequest"
+            },
+            "required":true
+          }
+        ],
+        "responses":{
+          "201":{
+            "description":"Post criado com sucesso",
+            "schema":{
+              "$ref":"#/definitions/task"
+            }
+          },
+          "400":{
+            "description":"Requisição inválida"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "taskRequest":{
+      "type":"object",
+      "properties":{
+        "name":{"type":"string"},
+        "done":{"type":"boolean"}
+      }
+    },
+    "erro":{
+      "type":"object",
+      "properties":{
+        "code":{"type":"string"},
+        "message":{"type":"string"}
+      }
+    },
+    "task":{
+      "type":"object",
+      "properties":{
+        "uuid":{"type":"string"},
+        "name":{"type":"string"},
+        "done":{"type":"boolean"}
+      }
+    }
+  }
+}

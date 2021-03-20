@@ -1,0 +1,10 @@
+@startuml modelo
+
+class Tarefa {
+    id: long
+    nome: string
+    feita: boolean
+    dataFeita: Date
+}
+
+@enduml
